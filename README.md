@@ -10,9 +10,15 @@ pip install lxml
 apt-get install chromium-driver
 ```
 
-Execute with e.g. `python3 scrap.py wgxp` to start function `_wgxp()`. I put it in cron. Inspect the examples closely to not feed the script wrong parameters.
+Inspect the examples closely to not feed the script wrong parameters. Create your own services (Python functions) using functions `request()` and `filter()`.
 
-Make sure to customize `scraphead.py` to have an already existing log path in `filepath` variable (maybe just `mkdir /var/log/scrappy`) and a working `communicate()` function. 
+**`request()`**: The first argument is `'chrome'` (default if empty) or `'wget'`. The second is target URL.
+
+**`filter()`**: The first argument is the result of a request. Then, a method: `'hash'` (default if empty), `'xpath'`, or `'regex'`. Finally, the pattern to match. Hash method takes an empty pattern for now, maybe I'll add CRC32/SHA1 selection later. 
+
+Execute with e.g. `python3 scrap.py wgxp` to start function `_wgxp()`. I put it in cron.
+
+Make sure to customize `scraphead.py` to have an already existing log path in `filepath` variable (maybe just `mkdir /var/log/scrappy`) and a working `communicate()` function. Mine uses Telegram, but I put Hangouts here for the sake of a demo.
 
 ## hangouts.py
 
