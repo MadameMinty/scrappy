@@ -6,8 +6,8 @@
 # Scraphead. Required to execute service list.
 
 import sys                         #arguments
-import subprocess                  #telegram, browser
-from lxml.html import fromstring   #xpath parsing, requires: pip install lxml
+import subprocess                  #communicate, browser
+from lxml.html import fromstring   #xpath parsing
 from lxml.etree \
    import tostring as htmlstring
 import zlib                        #hashing
