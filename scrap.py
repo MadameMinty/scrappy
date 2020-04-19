@@ -8,12 +8,13 @@ from scraphead import *;from time import sleep
 # ---------------- service list start
 
 
-# ---------------- CHROME/REGEX EXAMPLE
+# ---------------- CHROME EXAMPLE
 def _chre():
 	url = 'https://www.x-kom.pl/'
 	r = request('chrome', url)
+	hash = filter(r, 'hash', '') #empty pattern for now, maybe I'll add CRC32/SHA1 selection later
 	price = filter(r, 'regex', r'>(\d+,\d{2} zł)<', group=1)
-	return price
+	return price + ' and the hash is ' + hash
 
 
 # ---------------- WGET/XPATH EXAMPLE
