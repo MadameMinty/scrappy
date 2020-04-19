@@ -10,7 +10,7 @@ pip install lxml
 apt-get install chromium-driver
 ```
 
-Inspect the examples closely to not feed the script wrong parameters. Create your own services (Python functions) using functions `request()` and `filter()`.
+Inspect the examples closely to not feed the script wrong parameters. Be aware this uses `eval()` and I proofed _nothing_. Create your own services (Python functions) using functions `request()` and `filter()`.
 
 **`request()`**: The first argument is `'chrome'` (default if empty) or `'wget'`. The second is target URL.
 
