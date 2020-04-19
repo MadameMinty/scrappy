@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf
 
-# 2020-04-19 by Madame Minty
+# 2020-04-19
 # https://github.com/MadameMinty/scrappy
 # Service list. Requires Scraphead.
 from scraphead import *;from time import sleep
@@ -12,7 +12,7 @@ from scraphead import *;from time import sleep
 def _chre():
 	url = 'https://www.x-kom.pl/'
 	r = request('chrome', url)
-	hash = filter(r, 'hash', '') #empty pattern for now, maybe I'll add CRC32/SHA1 selection later
+	hash = filter(r, 'hash', '')
 	price = filter(r, 'regex', r'>(\d+,\d{2} zł)<', group=1)
 	return price + ' and the hash is ' + hash
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf
 
-# 2020-04-19 by Madame Minty
+# 2020-04-19
 # https://github.com/MadameMinty/scrappy
-# Scraphead. Required to execute service list.
+# Header. Required to execute service list.
 
 import sys                         #arguments
 import subprocess                  #communicate, browser
