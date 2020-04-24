@@ -8,8 +8,6 @@
 import sys                         #arguments
 import subprocess                  #communicate, browser
 from lxml.html import fromstring   #xpath parsing
-from lxml.etree \
-   import tostring as htmlstring
 import zlib                        #hashing
 import re                          #regex
 
@@ -17,6 +15,10 @@ import re                          #regex
 def communicate(text):
 	chatid = 'YOUR CONVERSATION ID HERE'
 	subprocess.call( ['python3', 'hangouts.py', chatid, text ] )
+
+
+def innertext(node):
+  return (node.text or '') + '\n'.join(innertext(e) for e in node) + (node.tail or '')
 
 
 def changes(service, new):
@@ -42,6 +44,7 @@ def request(browser, url):
 
 	cmd = {
 		'chrome': 'chromium --headless --disable-gpu --window-size=1920x1080 --dump-dom ',
+		'delayed': 'chromium --headless --disable-gpu --window-size=1920x1080 --run-all-compositor-stages-before-draw --virtual-time-budget=15000 --dump-dom ',
 		'wget': 'wget --user-agent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.63 Safari/537.36" -q -O - '
 	}
 	
@@ -55,7 +58,7 @@ def filter(request, method, pattern, group=''):
 
 	elif method == 'xpath':
 		node = fromstring( str(request) ).xpath(pattern)[0]
-		return node.text + ''.join(etree.tostring(e) for e in node)
+		return innertext(node).strip()
 
 	elif method == 'regex':
 		return re.search( pattern, request ).group(group)
